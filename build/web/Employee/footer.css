@@ -1,0 +1,41 @@
+div {
+color: white;
+}
+div a{
+color: white;
+}
+.icon
+{
+    color: #007BFF;
+}
+footer{
+    background-color: #3D3D3D;
+}
+.foot {
+    margin-top: 35px;
+    color: white;
+    }
+    div a{
+    color: white;
+    }
+    .footer-desc{
+        color: white;
+    }
+    .icon
+    {
+        font-size: 25px;
+        margin-left: 5px;
+        /* color: #007BFF; */
+    }
+    .mar{
+        margin-top: 70px;
+        background-color: whitesmoke;
+    }
+    .icon:hover
+    {      
+        color: #9F1945;
+    }
+    footer{
+        background-color: #3D3D3D;
+    }
+

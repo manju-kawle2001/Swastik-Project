@@ -1,0 +1,213 @@
+
+CREATE DATABASE swastik;
+
+use swastik;
+
+
+CREATE TABLE `account` (
+  `Account_Num` int NOT NULL AUTO_INCREMENT,
+  `customer_id` int NOT NULL,
+  `Account_Type` varchar(25) NOT NULL,
+  `Current_Balance` varchar(50) NOT NULL,
+  `Branch_id` int NOT NULL,
+  `Account_Status` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`Account_Num`),
+  KEY `customer_id_idx` (`customer_id`),
+  KEY `Branch_id_idx` (`Branch_id`),
+  CONSTRAINT `Branch_id` FOREIGN KEY (`Branch_id`) REFERENCES `branch` (`Branchid`),
+  CONSTRAINT `customer_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customerid`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+
+
+CREATE TABLE `beneficiary` (
+  `Beneficiary_Id` int NOT NULL AUTO_INCREMENT,
+  `Acc_num` int NOT NULL,
+  `Beneficiary_Name` varchar(25) DEFAULT NULL,
+  `Bank` varchar(30) DEFAULT NULL,
+  `ifsc` varchar(10) DEFAULT NULL,
+  `Limit` varchar(10) DEFAULT NULL,
+  `benefi_Acc_num` int DEFAULT NULL,
+  PRIMARY KEY (`Beneficiary_Id`),
+  UNIQUE KEY `unique_account_pair` (`Acc_num`,`benefi_Acc_num`),
+  UNIQUE KEY `benefi_Acc_num` (`benefi_Acc_num`),
+  CONSTRAINT `Acc_num` FOREIGN KEY (`Acc_num`) REFERENCES `account` (`Account_Num`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `branch` (
+  `Branchid` int NOT NULL,
+  `ifsc` varchar(10) NOT NULL,
+  `Branch_name` varchar(100) NOT NULL,
+  `Branch_Address` varchar(100) NOT NULL,
+  PRIMARY KEY (`Branchid`),
+  UNIQUE KEY `Branch_name` (`Branch_name`),
+  UNIQUE KEY `Branch_Address` (`Branch_Address`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `customer` (
+  `customerid` int NOT NULL AUTO_INCREMENT,
+  `password` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `father` varchar(100) NOT NULL,
+  `mother` varchar(100) NOT NULL,
+  `gender` varchar(20) NOT NULL,
+  `dob` varchar(20) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `adhar` varchar(100) NOT NULL,
+  `registerdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `pan` varchar(100) NOT NULL,
+  `maritail` varchar(15) DEFAULT NULL,
+  `occupation` varchar(100) NOT NULL,
+  `address` varchar(250) NOT NULL,
+  `city` varchar(100) NOT NULL,
+  `distric` varchar(100) NOT NULL,
+  `pincode` varchar(10) NOT NULL,
+  `state` varchar(100) NOT NULL,
+  PRIMARY KEY (`customerid`),
+  UNIQUE KEY `email_UNIQUE` (`email`),
+  UNIQUE KEY `phone_UNIQUE` (`phone`),
+  UNIQUE KEY `adhar_UNIQUE` (`adhar`),
+  UNIQUE KEY `pan_UNIQUE` (`pan`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `employee` (
+  `Employeeid` int NOT NULL AUTO_INCREMENT,
+  `password` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `dob` varchar(15) NOT NULL,
+  `doh` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `salary` varchar(15) NOT NULL,
+  `phone` varchar(10) NOT NULL,
+  `position` varchar(30) NOT NULL,
+  `approval` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`Employeeid`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `phone` (`phone`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+CREATE TABLE `employeerequest` (
+  `requestId` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `adhar` varchar(12) NOT NULL,
+  `pancard` varchar(10) NOT NULL,
+  `requestDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dob` varchar(20) NOT NULL,
+  PRIMARY KEY (`requestId`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `loan` (
+  `Loanid` int NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `Intrest_Rate` varchar(100) NOT NULL,
+  `Duration` varchar(100) NOT NULL,
+  PRIMARY KEY (`Loanid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+ CREATE TABLE `loanrequest` (
+  `LoanRequestid` int NOT NULL AUTO_INCREMENT,
+  `Acc_number` int NOT NULL,
+  `Loan_Id` int NOT NULL,
+  `Loan_Amount` varchar(20) NOT NULL,
+  `Loan_Term` varchar(10) NOT NULL,
+  `Permanent_Address` varchar(100) NOT NULL,
+  `Email` varchar(30) NOT NULL,
+  `Mobile` varchar(10) NOT NULL,
+  `Guarantor_name` varchar(30) NOT NULL,
+  `Guarantor_Father` varchar(30) NOT NULL,
+  `Guarantor_Gender` varchar(10) NOT NULL,
+  `Guarantor_Address` varchar(100) NOT NULL,
+  `Guarantor_Account` varchar(20) NOT NULL,
+  `Guarantor_Bank` varchar(100) NOT NULL,
+  `Guarantor_Ifsc` varchar(10) NOT NULL,
+  `Guarantor_Adhar` varchar(12) NOT NULL,
+  `Guarantor_Pan` varchar(10) NOT NULL,
+  PRIMARY KEY (`LoanRequestid`),
+  KEY `Acc_number_idx` (`Acc_number`),
+  KEY `Loan_Idx` (`Acc_number`),
+  KEY `Loan_Id` (`Loan_Id`),
+  CONSTRAINT `Acc_number` FOREIGN KEY (`Acc_number`) REFERENCES `account` (`Account_Num`),
+  CONSTRAINT `Loan_Id` FOREIGN KEY (`Loan_Id`) REFERENCES `loan` (`Loanid`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+CREATE TABLE `manager` (
+  `Managerid` int NOT NULL AUTO_INCREMENT,
+  `password` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `dob` varchar(15) NOT NULL,
+  `doh` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `salary` varchar(15) NOT NULL,
+  `phone` varchar(10) NOT NULL,
+  PRIMARY KEY (`Managerid`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `phone` (`phone`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `nomineedetails` (
+  `customerid` int NOT NULL,
+  `Nominee_Name` varchar(25) DEFAULT NULL,
+  `dob` varchar(10) DEFAULT NULL,
+  `Relation` varchar(10) DEFAULT NULL,
+  `Adhar` varchar(10) DEFAULT NULL,
+  `Address` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`customerid`),
+  KEY `customerid_idx` (`customerid`),
+  CONSTRAINT `customerid` FOREIGN KEY (`customerid`) REFERENCES `customer` (`customerid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+ CREATE TABLE `report` (
+  `Report_id` int NOT NULL AUTO_INCREMENT,
+  `custid` int NOT NULL,
+  `Report_Type` varchar(25) NOT NULL,
+  `Report_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Report_Status` varchar(25) NOT NULL,
+  `Report_Solution` varchar(25) NOT NULL,
+  PRIMARY KEY (`Report_id`),
+  KEY `custid_idx` (`custid`),
+  CONSTRAINT `custid` FOREIGN KEY (`custid`) REFERENCES `customer` (`customerid`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `reviewandrating` (
+  `cid` int NOT NULL,
+  `Review` varchar(25) NOT NULL,
+  `Review_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Rating` varchar(10) NOT NULL,
+  PRIMARY KEY (`cid`),
+  KEY `cid_idx` (`cid`),
+  CONSTRAINT `cid` FOREIGN KEY (`cid`) REFERENCES `customer` (`customerid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `transaction_information` (
+  `Transaction_id` int NOT NULL AUTO_INCREMENT,
+  `sender_Acc` int NOT NULL,
+  `Receiver_Acc_num` int NOT NULL,
+  `Amount` varchar(25) NOT NULL,
+  `Tran_Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Tran_Type` varchar(10) NOT NULL,
+  `Description` varchar(100) NOT NULL,
+  `Tran_status` varchar(10) NOT NULL,
+  PRIMARY KEY (`Transaction_id`),
+  KEY `sender_Acc_idx` (`sender_Acc`),
+  KEY `Receiver_Acc_numdx` (`Receiver_Acc_num`),
+  CONSTRAINT `Receiver_Acc_num` FOREIGN KEY (`Receiver_Acc_num`) REFERENCES `beneficiary` (`benefi_Acc_num`),
+  CONSTRAINT `sender_Acc` FOREIGN KEY (`sender_Acc`) REFERENCES `account` (`Account_Num`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

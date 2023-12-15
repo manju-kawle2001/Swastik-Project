@@ -1,0 +1,125 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 18-Nov-2023, 2:22:56 pm
+    Author     : Hp
+*/
+#ba{
+    background-color: #fff0e6;
+}
+#top-nav{
+    font-size: 20px;
+    color: black;
+}
+#top-nav:hover{
+   color: blue;
+}
+h2{
+    font-size: 25px;
+}
+.navbar{
+    /* background-color: #00abe4; */
+    background-color: #9F1945;
+}
+
+.btn{
+    background-color: #9F1945;
+}
+h3{
+    font-size: 20px;
+}
+h4{
+    font-size: 17px;
+}
+#internet{
+    margin-top: 30px;
+}
+ .back-img{
+    /* background-image: url('https://sultanchandfoundation.org/wp-content/uploads/2021/04/book.jpg'); */
+    height: 80vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.lead{
+    font-size: 20px;
+}
+#icon{
+    color:#FF9933;
+   font-size: 25px;    
+    margin-left: 30px;
+}
+.img-fluid{
+    height: 250px;
+    width: 400px;
+    border-radius: 15px;
+    
+}
+.img-fluid{
+    transition: 1s;
+}
+.img-fluid:hover{
+    color: #FF9933;
+   transform: scale(1.1);
+}
+
+#butcenter{
+   margin-left: 70px;
+   border-radius: 20px;
+}
+#navbarDropdownMenuLink{
+    font-size: 20px;
+    /* margin-left: -1px; */
+}
+.foot {
+    margin-top: 35px;
+    color: white;
+    }
+    div a{
+    color: white;
+    }
+    .footer-desc{
+        color: white;
+    }
+    .icon
+    {
+        font-size: 25px;
+        margin-left: 5px;
+        /* color: #007BFF; */
+    }
+    .mar{
+        margin-top: 70px;
+        background-color: whitesmoke;
+    }
+    .icon:hover
+     {
+       
+        color: #9F1945;
+    }
+    footer{
+        background-color: #3D3D3D;
+    }
+#save{
+  margin-top: 100px;
+ 
+}
+.background{
+    background-color: #fff0e6;;
+}
+#fix{
+    margin-top: 6px;
+}
+.mat{
+    margin-top: 30px;
+}
+@media screen and (max-width:360px){
+    .shadow{
+        height: 70px;
+        width: 90%;
+    }
+    .imggg{
+        width: 80%;
+    }
+}

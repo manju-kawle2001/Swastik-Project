@@ -1,0 +1,37 @@
+/* Style the box */
+.box {
+    width: 300px; /* Adjust the width as needed */
+    height: 200px; /* Adjust the height as needed */
+    background-color: #ecafaf;
+    border: 1px solid #ddd; /* Add a border for a border effect */
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.2); /* Add a shadow effect */
+    margin: 20px; /* Adjust the margin as needed */
+    text-align: center;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+}
+.box{
+    line-height: 10px;
+  
+
+}
+#wid{
+    width:300rem;
+}
+.dis{
+    display: flex;
+    
+}
+
+/* Media query for responsiveness */
+@media screen and (max-width: 768px) {
+    /* Adjust the styles for smaller screens */
+    .box {
+        width: 100%;
+        height: auto;
+    }
+}
+
+
